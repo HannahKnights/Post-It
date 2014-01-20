@@ -1,0 +1,22 @@
+<% if @posts.none? %>
+No posts have been made yet!
+<% end %>
+
+<% @posts.each do |post| %>
+
+  <%= post.title %>
+
+  <%= post.content %>
+
+  <% post.comments.each do |comment| %>
+
+    <%= comment.content %>
+
+  <% end %>
+
+  <%= link_to "Add a Comment", new_post_comment_path(post) %>
+
+<% end %>
+
+<%= link_to 'Add Post', new_post_path %>
+

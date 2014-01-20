@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
 
+  root 'posts#index'
   
   devise_for :admins
-  devise_for :users do
-  
-  root 'devise/registrations#new'
+  devise_for :users
 
-end
-
+  resources :posts do
+    resources :comments
+  end
 
 
 
