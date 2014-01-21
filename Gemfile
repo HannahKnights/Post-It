@@ -35,7 +35,7 @@ gem 'sdoc',          group: :doc, require: false
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/jonleighton/spring
 gem 'spring',        group: :development
 
-gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git', :branch => 'bootstrap3'
+gem 'twitter-bootstrap-rails', :github => 'seyhunak/twitter-bootstrap-rails', :branch => 'bootstrap3'
 
 gem 'devise'
 
@@ -45,7 +45,7 @@ gem 'aws-sdk'
 
 gem 'heroku_secrets', :git => 'git://github.com/alexpeattie/heroku_secrets'
 
-gem 'rails_12factor'
+gem 'rails_12factor', group: :production
 
 
 group :test, :development do 
