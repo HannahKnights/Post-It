@@ -38,6 +38,10 @@ gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootst
 
 gem 'devise'
 
+gem 'paperclip'
+
+gem 'heroku_secrets', :git => 'git://github.com/alexpeattie/heroku_secrets'
+
 group :test, :development do 
   gem 'rspec-rails'
   gem 'database_cleaner'

@@ -34,6 +34,7 @@ describe 'Comments' do
         click_link "Add a Comment"
         fill_in "Content", with: invalid_comment
         click_button "Create Comment"
+        visit '/posts'
       end 
 
       it { should_not have_content invalid_comment }
