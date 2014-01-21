@@ -43,7 +43,7 @@ gem 'paperclip'
 
 gem 'aws-sdk'
 
-gem 'heroku_secrets', :git => 'git://github.com/alexpeattie/heroku_secrets'
+gem 'heroku_secrets', :github => 'alexpeattie/heroku_secrets'
 
 gem 'rails_12factor', group: :production
 
