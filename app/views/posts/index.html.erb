@@ -8,6 +8,20 @@ No posts have been made yet!
 
   <%= post.content %>
 
+  Tags:
+
+  <% if post.tags.any? %>
+
+    <% post.tags.each do |tag| %>
+
+      <%= tag %>
+
+    <% end %>
+
+  <% end %>
+
+
+
   <%= image_tag post.image.url(:thumb), class: 'instagram_upload' %>
 
   <% post.comments.each do |comment| %>

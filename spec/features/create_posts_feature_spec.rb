@@ -25,6 +25,19 @@ describe Post do
     end
   end
 
+  context 'adding tags' do
+
+    it 'can have many tags' do
+      login_as @user, scope: :user
+      visit '/posts/new'
+      fill_in 'Title', with: 'post title'
+      fill_in 'Content', with: 'post content #yolo Some more info #fml,#lolatron #    #fixthisshit'
+      click_button 'Create Post'
+      expect(page).to have_content 'Tags: #yolo #fml #lolatron #fixthisshit'
+    end
+
+  end
+
   describe 'uploading images' do
     before do
       login_as @user, scope: :user
