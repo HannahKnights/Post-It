@@ -2,7 +2,6 @@ source 'https://rubygems.org'
 
 ruby '2.0.0'
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.0.beta1'
 
@@ -36,7 +35,7 @@ gem 'sdoc',          group: :doc, require: false
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/jonleighton/spring
 gem 'spring',        group: :development
 
-gem 'bootstrap-sass', '~> 3.0.3.0'
+gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git', :branch => 'bootstrap3'
 
 gem 'devise'
 
@@ -45,6 +44,8 @@ gem 'paperclip'
 gem 'aws-sdk'
 
 gem 'heroku_secrets', :git => 'git://github.com/alexpeattie/heroku_secrets'
+
+gem 'rails_12factor'
 
 
 group :test, :development do 
