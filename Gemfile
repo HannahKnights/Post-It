@@ -40,7 +40,10 @@ gem 'devise'
 
 gem 'paperclip'
 
+gem 'aws-sdk'
+
 gem 'heroku_secrets', :git => 'git://github.com/alexpeattie/heroku_secrets'
+
 
 group :test, :development do 
   gem 'rspec-rails'
