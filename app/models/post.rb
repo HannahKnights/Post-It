@@ -22,5 +22,9 @@ class Post < ActiveRecord::Base
     save_tags_without_hashtags(content.gsub('#',' #').scan(/\#\w+/)).uniq
   end
 
+  def self.by_tag_or_all(tag_id)
+    tag_id ? Tag.find(tag_id).posts : Post.all
+  end
+
 end
 
