@@ -22,7 +22,5 @@ class Post < ActiveRecord::Base
     save_tags_without_hashtags(content.gsub('#',' #').scan(/\#\w+/)).uniq
   end
 
-
-
 end
 

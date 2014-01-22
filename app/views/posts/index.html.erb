@@ -8,10 +8,11 @@ No posts have been made yet!
 
   <%= post.content %>
 
-  Tags:
 
   <% if post.tags.any? %>
 
+  Tags:
+  
     <% post.tags.each do |tag| %>
 
       <%= tag %>
@@ -21,8 +22,11 @@ No posts have been made yet!
   <% end %>
 
 
+  <% if post.image_file_name.present? %>
 
-  <%= image_tag post.image.url(:thumb), class: 'instagram_upload' %>
+    <%= image_tag post.image.url(:thumb), class: 'instagram_upload' %>
+
+  <% end %>
 
   <% post.comments.each do |comment| %>
 

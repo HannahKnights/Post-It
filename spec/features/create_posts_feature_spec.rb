@@ -39,17 +39,34 @@ describe Post do
   end
 
   describe 'uploading images' do
+    
     before do
       login_as @user, scope: :user
       visit new_post_path
       fill_in :Title, with: 'Gary Oldman'
-      fill_in :Content, with: 'Gazza'
+      fill_in :Content, with: 'A post about Gary Oldman'
       attach_file 'Image', Rails.root.join('spec/images/Gary_Oldman.jpg')
       click_button 'Create Post'
     end
 
-    it 'uploads the img with css selector instagram_upload' do
+    it 'uploads the img with css selector instagram_upload', slow: true do
       expect(page).to have_css 'img.instagram_upload'
+    end
+
+  end
+
+  describe 'not uploading images' do
+
+    before do
+      login_as @user, scope: :user
+      visit new_post_path
+      fill_in :Title, with: 'Gary Oldman'
+      fill_in :Content, with: 'A post about Gary Oldman'
+      click_button 'Create Post'
+    end
+
+    it 'should not render a missing image tag' do
+      expect(page).not_to have_css 'img.instagram_upload'
     end
 
   end

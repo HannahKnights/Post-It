@@ -63,6 +63,8 @@ include FactoryGirl::Syntax::Methods
     Warden.test_reset!
   end
 
+  config.filter_run_excluding slow: true
+
   config.after(:each) do
     DatabaseCleaner.clean
   end
