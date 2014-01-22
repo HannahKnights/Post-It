@@ -4,7 +4,7 @@ No posts have been made yet!
 
 <% @posts.each do |post| %>
 
-  <%= post.title %>
+  <%= link_to post.title, post_path(post) %>
 
   <%= post.content %>
 
@@ -15,7 +15,7 @@ No posts have been made yet!
   
     <% post.tags.each do |tag| %>
 
-      <%= tag %>
+      <%= link_to tag, tag_posts_path(tag) %>
 
     <% end %>
 

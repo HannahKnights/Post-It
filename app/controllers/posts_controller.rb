@@ -12,7 +12,11 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
+    if params[:tag_id]
+      @posts = Tag.find(params[:tag_id]).posts
+    else
+      @posts = Post.all
+    end
   end
 
   def edit
