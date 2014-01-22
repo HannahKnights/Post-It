@@ -1,0 +1,35 @@
+
+<%= @post.title %>
+
+<%= @post.content %>
+
+
+<% if @post.tags.any? %>
+
+Tags:
+
+  <% @post.tags.each do |tag| %>
+
+    <%= link_to tag, tag_posts_path(tag) %>
+
+  <% end %>
+
+<% end %>
+
+
+<% if @post.image_file_name.present? %>
+
+  <%= image_tag @post.image.url(:thumb), class: 'instagram_upload' %>
+
+<% end %>
+
+<% @post.comments.each do |comment| %>
+
+  <%= comment.content %>
+
+<% end %>
+
+<%= link_to "Add a Comment", new_post_comment_path(@post) %>
+
+
+
