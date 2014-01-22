@@ -19,7 +19,7 @@ class Post < ActiveRecord::Base
   end
 
   def parse_tags
-    save_tags_without_hashtags(content.gsub('#',' #').scan(/\#\w+/)).uniq
+    save_tags_without_hashtags(content.downcase.gsub('#',' #').scan(/\#\w+/)).uniq
   end
 
   def self.by_tag_or_all(tag_name)

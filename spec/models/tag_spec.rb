@@ -1,24 +1,17 @@
 require 'spec_helper'
 
+
 describe Tag do
 
-  # let(:user) { create(:user) }
-  
-  # before do
-  #   @user = user
-  # end
+  it "reuses tags if they exist already" do
+    2.times { create(:post) }
+    expect(Post.count).to eq 2
+    expect(Tag.count).to eq 1
+  end
 
-  # it "reuses tags if they exist already" do
-  #   login_as @user, scope: :user
-  #   visit '/posts/new'
-  #   fill_in 'Title', with: 'First Post'
-  #   fill_in 'Content', with: '#test'
-  #   click_button 'Create Post'
-  #   visit '/posts/new'
-  #   fill_in 'Title', with: 'Second Post'
-  #   fill_in 'Content', with: '#test'
-  #   click_button 'Create Post'
-  #   expect(Tags.count).to eq 1
-  # end
+  it "converts tags to downcase" do
+    create(:post, content: '#TesT')
+    expect(Tag.first.name).to eq 'test'
+  end
 
 end
