@@ -45,6 +45,8 @@ gem 'aws-sdk'
 
 gem 'heroku_secrets', :git => 'https://github.com/alexpeattie/heroku_secrets'
 
+gem 'stripe', :github => 'stripe/stripe-ruby'
+
 gem 'rails_12factor', group: :production
 
 

@@ -31,5 +31,19 @@ Tags:
 
 <%= link_to "Add a Comment", new_post_comment_path(@post) %>
 
+Buy:
 
+<%= form_tag post_charges_path(@post) do %>
+  <article>
+    <label class="amount">
+      <span>Amount: £5.00</span>
+    </label>
+  </article>
+
+  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+          data-key="<%= Rails.application.secrets.stripe_public_key %>"
+          data-description="A month's subscription"
+          data-amount="500"
+          data-currency="GBP"></script>
+<% end %>
 
