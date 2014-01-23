@@ -24,14 +24,6 @@ body {
   border-right-width: 12px;
 }
 
- #container {
-  padding: 0 15px;
- }
-
- #main {
-  height: 100vh;
-  z-index: ;
- }
 
  #bottom_nav {
   border-bottom-color: black;
