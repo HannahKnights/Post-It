@@ -1,0 +1,41 @@
+<div id='top_nav'class='row navbar-fixed-top'>
+<div id='top_left_corner' class='col-xs-2 col-sm-2 col-md-2 navbar-fixed-top'>
+<h4 class="text-center button">Post-it</h4>
+</div>
+
+<div id='top_right_corner' class='col-xs-2 col-sm-2 col-md-2 col-md-offset-10 navbar-fixed-top'>
+<h4 class="text-center button">About</h4>
+</div>
+</div>
+
+<div id='bottom_nav' class='row navbar-fixed-bottom'>
+<div id='bottom_left_corner' class='col-xs-2 col-sm-2 col-md-2 navbar-fixed-bottom'>
+<h4 class="text-center button">
+<% if user_signed_in? %>
+  
+  <%= link_to('Edit registration', edit_user_registration_path) %>
+  
+<% else %>
+  
+  <%= link_to('Register', new_user_registration_path)  %>
+  
+<% end %>
+</h4>
+</div>
+
+<div id='bottom_right_corner' class='col-xs-2 col-sm-2 col-md-2 col-md-offset-10 navbar-fixed-bottom'>
+<h4 class="text-center button">
+<% if user_signed_in? %>
+  
+  <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>        
+  
+<% else %>
+  
+  <%= link_to('Login', new_user_session_path)  %>  
+  
+<% end %>
+</h4>
+</div>
+</div>
+
+

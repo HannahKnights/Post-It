@@ -9,11 +9,7 @@ class CommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     @comment = Comment.new params[:comment].permit(:content)
     @comment.post = @post
-    if @comment.save
-      redirect_to '/posts'
-    else
-      render 'new'
-    end
+    @comment.save ? redirect_to(posts_path) : render('new') 
   end
 
 end

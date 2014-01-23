@@ -11,6 +11,8 @@ class Post < ActiveRecord::Base
                       secret_access_key: Rails.application.secrets.sw3_secret_access_key
                     },
                     bucket: 'faux_instagram'
+
+  validates :image, presence: true
   
   has_and_belongs_to_many :tags, autosave: false
 
