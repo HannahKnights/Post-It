@@ -1,0 +1,23 @@
+<div class='new-post-background'></div>
+<div class='new-post-form col-xs-8 col-sm-8 col-md-8 col-md-offset-2'>
+
+  <%= form_for @new_post do |form| %>
+    
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+
+    <%= form.label :content %>
+    <%= form.text_area :content %>
+
+
+    <%= form.label :image %>
+    <%= form.file_field :image %>
+
+    <%= form.submit %>
+
+  <% end %>
+
+  <a class='new-post-close'><h1>X</h1></a>
+</div>
+
+

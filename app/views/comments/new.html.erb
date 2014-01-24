@@ -1,8 +1,1 @@
-<%= form_for [@post, @comment] do |form| %>
-  
-  <%= form.label :content %>
-  <%= form.text_area :content %>
-
-  <%= form.submit %>
-
-<% end %>
+<%= render partial: 'new' %>

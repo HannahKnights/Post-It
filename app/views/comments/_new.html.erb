@@ -1,0 +1,15 @@
+<div class='add-comment-background'></div>
+<div class='add-comment-form col-xs-8 col-sm-8 col-md-8 col-md-offset-2'>
+
+<%= form_for [@post_for_comment, @new_comment] do |form| %>
+  
+  <%= form.label :content %>
+  <%= form.text_area :content %>
+
+  <%= form.submit %>
+
+<% end %>
+
+<a class='add-comment-close'><h1>X</h1></a>
+
+</div>

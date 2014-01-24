@@ -17,7 +17,9 @@ Tags:
   <%= comment.content %>
 <% end %>
 
-<%= link_to "Add a Comment", new_post_comment_path(@post) %>
+<a href='#' class='comment-link'>Add a Comment</a>
+
+
 Buy:
 <%= form_tag post_charges_path(@post) do %>
   <article>
@@ -31,4 +33,10 @@ Buy:
           data-amount="500"
           data-currency="GBP"></script>
 <% end %>
+
+<div class='add-comment navbar-fixed-top'>
+  <%= render 'comments/new' %>
+</div>
+
+
 

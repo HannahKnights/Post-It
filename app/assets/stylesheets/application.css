@@ -15,13 +15,92 @@
  */
 
 body {
-  height: 100vh;
+  min-height: 100vh;
   border-left-color: black;
   border-left-style: solid;
   border-left-width: 12px;
   border-right-color: black;
   border-right-style: solid;
   border-right-width: 12px;
+}
+
+.new-post {
+  display: none;
+  z-index: 1032;
+  height: 100vh;
+}
+
+.new-post-background {
+  background-color: white;
+  opacity: 0.9;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+}
+
+.new-post-form {
+  height: 400px;
+  top: calc(50% - 200px);
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+}
+
+
+.about-page {
+  display: none;
+  z-index: 1031;
+  height: 100vh;
+}
+
+.about-background {
+  background-color: white;
+  opacity: 0.9;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+}
+
+.about-content {
+  height: 400px;
+  top: calc(50% - 200px)
+ /* position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;*/
+}
+
+.add-comment {
+  display: none;
+  z-index: 1032;
+  height: 100vh;
+}
+
+.add-comment-background {
+  background-color: white;
+  opacity: 0.9;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+}
+
+.add-comment-form {
+  height: 400px;
+  top: calc(50% - 200px);
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
 }
 
 
@@ -75,5 +154,9 @@ body {
 
  a:hover {
   color: black;
+ }
+
+ #post {
+  margin-bottom: 50px;
  }
 

@@ -1,10 +1,16 @@
 <div id='top_nav'class='row navbar-fixed-top'>
 <div id='top_left_corner' class='col-xs-2 col-sm-2 col-md-2 navbar-fixed-top'>
-<h4 class="text-center button">Post-it</h4>
+<h4 class="text-center button">
+<a href='#' class='post'>Post-it</a>
+</h4>
 </div>
 
+
+
 <div id='top_right_corner' class='col-xs-2 col-sm-2 col-md-2 col-md-offset-10 navbar-fixed-top'>
-<h4 class="text-center button">About</h4>
+<h4 class="text-center button">
+<a href='#' class='about'>About</a>
+</h4>
 </div>
 </div>
 
@@ -38,4 +44,18 @@
 </div>
 </div>
 
+<div class='about-page navbar-fixed-top'>
+  <div class='about-background'></div>
+  <div class='about-content text-center col-xs-8 col-sm-8 col-md-8 col-md-offset-2'>
+    <h1>Post an image. Edit an image. Comment on an image.<br/>
+    Post-it is a basic Ruby on Rails application completed as a project set at Makers Academy. Code hints and guidance by Alex Peattie. View the code on Github.<br/>Created by Hannah Knights and Tom Schaham......edit text</h1> 
+    <a class='about-close'><h1>X</h1></a>
+  </div>
+</div>
+
+<div class='new-post navbar-fixed-top'>
+
+<%= render new_post_path %>
+
+</div>
 

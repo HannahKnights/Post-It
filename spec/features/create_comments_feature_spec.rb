@@ -18,14 +18,14 @@ describe 'Posting a comment' do
   
     it 'should allow a valid comment' do
       click_link 'Add a Comment'
-      fill_in 'Content', with: 'Some comment'
+      within(:css, '.add-comment-form') { fill_in 'Content', with: 'Some comment' }
       click_button 'Create Comment'
       expect(page).to have_content 'Some comment'
     end 
 
     it 'should not allow a valid comment' do
-      click_link "Add a Comment"
-      fill_in "Content", with: invalid_comment
+      click_link 'Add a Comment'
+      within(:css, '.add-comment-form') { fill_in 'Content', with: invalid_comment }
       click_button "Create Comment"
       visit '/posts'
       expect(page).to_not have_content invalid_comment

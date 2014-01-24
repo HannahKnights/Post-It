@@ -2,41 +2,49 @@
 No posts have been made yet!
 <% end %>
 
+
 <% @posts.each do |post| %>
+<div class='row'>
 
-  <%= link_to post.title, post_path(post) %>
+  <div id='post' class='col-md-8 col-md-offset-2'>
 
-  <%= post.content %>
+    <%= link_to post.title, post_path(post) %>
+
+    <%= post.content %>
 
 
-  <% if post.tags.any? %>
+    <% if post.tags.any? %>
 
-  Tags:
-  
-    <% post.tags.each do |tag| %>
+    Tags:
+    
+      <% post.tags.each do |tag| %>
 
-      <%= link_to tag, tag_posts_path(tag) %>
+        <%= link_to tag, tag_posts_path(tag) %>
+
+      <% end %>
 
     <% end %>
 
-  <% end %>
 
+    <% if post.image_file_name.present? %>
 
-  <% if post.image_file_name.present? %>
+      <%= image_tag post.image.url(:thumb), class: 'instagram_upload' %>
 
-    <%= image_tag post.image.url(:thumb), class: 'instagram_upload' %>
+    <% end %>
 
-  <% end %>
+    <% post.comments.each do |comment| %>
 
-  <% post.comments.each do |comment| %>
+      <%= comment.content %>
 
-    <%= comment.content %>
+    <% end %>
 
-  <% end %>
+    <%= link_to "Add a Comment", new_post_comment_path(post) %>
 
-  <%= link_to "Add a Comment", new_post_comment_path(post) %>
+  </div>
 
+</div>
 <% end %>
+
 
 <%= link_to 'Add Post', new_post_path %>
 
