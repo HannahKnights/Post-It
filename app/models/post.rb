@@ -11,6 +11,14 @@ class Post < ActiveRecord::Base
                       secret_access_key: Rails.application.secrets.sw3_secret_access_key
                     },
                     bucket: 'faux_instagram'
+  has_attached_file :drawing, 
+                    styles: { thumb: "300x300>"},
+                    storage: :s3,
+                    s3_credentials: {
+                      access_key_id: 'AKIAJCXXF7UZZDQ4S4GQ',
+                      secret_access_key: Rails.application.secrets.sw3_secret_access_key
+                    },
+                    bucket: 'faux_instagram'
 
   validates :image, presence: true
   
