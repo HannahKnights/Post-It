@@ -34,3 +34,5 @@ $(document).ready ->
       e.preventDefault()
       $('.add-comment').hide()
 
+  
+

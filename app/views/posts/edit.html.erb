@@ -1,0 +1,124 @@
+<!-- <div id='post' class='col-md-8'>
+ -->
+<%= @post.title %>
+<%= @post.content %>
+
+<% if @post.tags.any? %>
+Tags:
+  <% @post.tags.each do |tag| %>
+    <%= link_to tag, tag_posts_path(tag) %>
+  <% end %>
+<% end %>
+
+<% if @post.image_file_name.present? %>
+<% end %>
+
+<% @post.comments.each do |comment| %>
+  <%= comment.content %>
+
+<% end %>
+
+<a href='#' class='comment-link'>Add a Comment</a>
+
+
+  <div id='draw'></div>
+
+  <div id='image_to_draw'>
+  <%= image_tag @post.image.url(:thumb), class: 'instagram_upload' %>
+  </div>
+
+<div id='pencil-picker'>
+    <form id='pick'>
+    <input id='colour' value='#ff0000' type='text' placeholder='Pick a colour'>
+    <input id='thickness' type='range' name='thickness' min='1' max='50' value='20'>
+    <button type='submit'>Draw!</button>
+    </form>
+</div>
+
+
+<%= form_for @post do |form| %>
+    
+
+    <%= form.label :image %>
+    <%= form.file_field :image %>
+
+    <%= form.submit %>
+
+<% end %>
+
+
+
+<!-- 
+ 
+    </div> -->
+<script src='https://code.jquery.com/jquery-2.0.3.min.js'></script>
+<script>
+
+
+function makeCanvasWithPen(colour, thickness) {
+    // Creates a new canvas element and appends it as a child
+    // to the parent element, and returns the reference to
+    // the newly created canvas element
+
+    function createCanvas(parent, width, height) {
+        var canvas = {};
+        canvas.node = document.createElement('canvas');
+        canvas.context = canvas.node.getContext('2d');
+        canvas.node.width = width || 100;
+        canvas.node.height = height || 100;
+        parent.appendChild(canvas.node);
+        return canvas;
+    };
+
+    function init(container, width, height, fillColor) {
+        var canvas = createCanvas(container, width, height);
+        var ctx = canvas.context;
+        // define a custom fillCircle method
+        ctx.fillCircle = function(x, y, radius, fillColor) {
+            this.fillStyle = fillColor;
+            this.beginPath();
+            this.moveTo(x, y);
+            this.arc(x, y, radius, 0, Math.PI * 2, false);
+            this.fill();
+            // console.log(fillColor)
+        };
+        
+
+        // bind mouse events
+        canvas.node.onmousemove = function(e) {
+            if (!canvas.isDrawing) {
+               return;
+            }
+            var x = e.pageX - this.offsetLeft;
+            var y = e.pageY - this.offsetTop;
+            var radius = thickness; // or whatever
+            var fillColor = colour;
+            ctx.fillCircle(x, y, radius, fillColor);
+        };
+        canvas.node.onmousedown = function(e) {
+            canvas.isDrawing = true;
+        };
+        canvas.node.onmouseup = function(e) {
+            canvas.isDrawing = false;
+        };
+    };
+
+    var container = document.getElementById('draw');
+    
+    init(container, 286, 300);
+
+    };
+
+    $(document).ready(function(){
+
+        $('#pick').on ('submit', function(event) {
+
+            event.preventDefault();
+            makeCanvasWithPen($('#colour').val(), $('#thickness').val());
+
+        });
+
+    });
+
+</script>
+

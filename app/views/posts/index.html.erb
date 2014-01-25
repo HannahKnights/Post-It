@@ -1,10 +1,35 @@
+
+<div id ='tag-sidebar' class="navbar-fixed col-lg-2">
+
+
+  <% if @all_tags.any? %>
+
+    <% @all_tags.each do |tag| %>
+
+      <h4 class='text-center'>
+
+      <%= link_to tag, tag_posts_path(tag) %> 
+
+      </h4>
+
+      <% end %>
+
+    <% end %>
+
+
+</div>
+
+
+<div class= 'container'>
+
+<div class='row'>
+
 <% if @posts.none? %>
 No posts have been made yet!
 <% end %>
 
-
 <% @posts.each do |post| %>
-<div class='row'>
+
 
   <div id='post' class='col-md-8 col-md-offset-2'>
 
@@ -30,6 +55,8 @@ No posts have been made yet!
 
       <%= image_tag post.image.url(:thumb), class: 'instagram_upload' %>
 
+    <%= link_to "Edit this Post", edit_post_path(post) %>
+
     <% end %>
 
     <% post.comments.each do |comment| %>
@@ -40,11 +67,12 @@ No posts have been made yet!
 
     <%= link_to "Add a Comment", new_post_comment_path(post) %>
 
+
   </div>
 
-</div>
+
 <% end %>
+</div>
 
-
-<%= link_to 'Add Post', new_post_path %>
+</div>
 

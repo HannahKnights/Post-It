@@ -17,6 +17,7 @@ class PostsController < ApplicationController
   end
 
   def edit
+    @post = Post.find_by(params[:post_id])
   end
 
   def update
