@@ -29,7 +29,7 @@ Tags:
 
 <div id='pencil-picker'>
     <form id='pick'>
-    <input id='colour' value='#ff0000' type='text' placeholder='Pick a colour'>
+    <input id='colour' value='#FF6666' type='text' placeholder='Pick a colour'>
     <input id='thickness' type='range' name='thickness' min='1' max='50' value='20'>
     <button type='submit'>Draw!</button>
     </form>
@@ -38,8 +38,7 @@ Tags:
 
 <%= form_for @post, html: { id: "add_drawing" } do |form| %>
 
-    <%= form.label :drawing %>
-    <%= form.file_field :drawing %>
+    <%= form.hidden_field :drawing %>
 
     <%= form.submit %>
 
@@ -117,6 +116,14 @@ function saveCanvasImage() {
 
     };
 
+    function sendImage(drawingSource) {
+
+        document.getElementById('add_drawing').post_drawing.value = drawingSource;
+
+        console.log(document.getElementById('add_drawing').post_drawing.value);
+
+    };
+
     var drawing = $('#draw > canvas');
 
     var drawingSource = drawing[0].toDataURL('image/png');
@@ -124,6 +131,8 @@ function saveCanvasImage() {
     var element = document.getElementById('result');
 
     appendResult(element, drawingSource);
+
+    sendImage(drawingSource)
 
 };
 
@@ -137,14 +146,14 @@ $(document).ready(function(){
 
     });
 
-    $('#add_drawing').on ('submit', function(event) {
+    $('#add_drawing').on ('submit', function() {
 
-        event.preventDefault();
         saveCanvasImage()
 
     });
 
 });
+
 
 </script>
 
