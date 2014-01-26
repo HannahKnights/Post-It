@@ -36,8 +36,7 @@ Tags:
 </div>
 
 
-<%= form_for @post do |form| %>
-    
+<%= form_for @post, html: { id: "add_drawing" } do |form| %>
 
     <%= form.label :drawing %>
     <%= form.file_field :drawing %>
@@ -46,11 +45,8 @@ Tags:
 
 <% end %>
 
+<div id='result'></div>
 
-
-<!-- 
- 
-    </div> -->
 <script src='https://code.jquery.com/jquery-2.0.3.min.js'></script>
 <script>
 
@@ -107,18 +103,48 @@ function makeCanvasWithPen(colour, thickness) {
     
     init(container, 286, 300);
 
+};
+
+function saveCanvasImage() {
+
+    function appendResult(element, src) {
+
+        var image = new Image();
+
+        image.src = src;
+
+        element.appendChild(image);
+
     };
 
-    $(document).ready(function(){
+    var drawing = $('#draw > canvas');
 
-        $('#pick').on ('submit', function(event) {
+    var drawingSource = drawing[0].toDataURL('image/png');
 
-            event.preventDefault();
-            makeCanvasWithPen($('#colour').val(), $('#thickness').val());
+    var element = document.getElementById('result');
 
-        });
+    appendResult(element, drawingSource);
+
+};
+
+
+$(document).ready(function(){
+
+    $('#pick').on ('submit', function(event) {
+
+        event.preventDefault();
+        makeCanvasWithPen($('#colour').val(), $('#thickness').val());
 
     });
+
+    $('#add_drawing').on ('submit', function(event) {
+
+        event.preventDefault();
+        saveCanvasImage()
+
+    });
+
+});
 
 </script>
 

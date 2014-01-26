@@ -21,6 +21,9 @@ class PostsController < ApplicationController
   end
 
   def update
+    @post = Post.find_by(params[:post_id])
+    @post.update params[:post].permit(:drawing)
+    redirect_to post_path(@post)
   end
 
   def destroy

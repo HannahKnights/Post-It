@@ -52,8 +52,12 @@ body {
 
 #pencil-picker {
   position: relative;
-  padding-top: 500px;
+  padding-top: 400px;
+}
 
+#result {
+  width: 400px;
+  height: 400px;
 }
 
 
