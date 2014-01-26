@@ -59,6 +59,12 @@ No posts have been made yet!
 
     <% end %>
 
+    <% if post.drawing_file_name.present? %>
+
+      <%= image_tag post.drawing.url(:thumb), class: 'instagram_upload' %>
+
+    <% end %>
+
     <% post.comments.each do |comment| %>
 
       <%= comment.content %>
