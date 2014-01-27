@@ -24,12 +24,182 @@ body {
   border-right-width: 12px;
 }
 
+
+/* General style */
+
+ a {
+  color: black;
+ }
+
+ a:hover {
+  color: black;
+ }
+
+
+/* Navigation styling */
+
+ #top_nav {
+  border-top-color: black;
+  border-top-style: solid;
+  border-top-width: 12px; 
+ }
+
+ #bottom_nav {
+  border-bottom-color: black;
+  border-bottom-style: solid;
+  border-bottom-width: 12px; 
+ }
+
+ #top_left_corner {
+  background-color: white;
+  border-color: black;
+  border-style: solid;
+  border-width: 12px;
+  min-width: 200px;
+ }
+
+ #top_right_corner {
+  background-color: white;
+  border-color: black;
+  border-style: solid;
+  border-width: 12px;
+  min-width: 200px;
+ }
+
+ #bottom_left_corner {
+  background-color: white;
+  border-color: black;
+  border-style: solid;
+  border-width: 12px;
+  min-width: 200px;
+ }
+
+ #bottom_right_corner {
+  background-color: white;
+  border-color: black;
+  border-style: solid;
+  border-width: 12px;
+  min-width: 200px;
+ }
+
 #tag-sidebar {
   position: fixed;
   top: 30%;
   left: 0;
   z-index: 1;
 }
+
+
+/* Pop-up window styling: */
+
+/* About */
+
+.about-page {
+  display: none;
+  z-index: 1031;
+  height: 100vh;
+}
+
+.about-background {
+  background-color: white;
+  opacity: 0.9;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+}
+
+.about-content {
+  height: 400px;
+  top: calc(50% - 200px)
+ /* position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;*/
+}
+
+
+/* New Post */
+
+.new-post {
+  display: none;
+  z-index: 1032;
+  height: 100vh;
+}
+
+.new-post-background {
+  background-color: white;
+  opacity: 0.9;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+}
+
+.new-post-form {
+  height: 400px;
+  top: calc(50% - 200px);
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+}
+
+
+/* Add Comment */
+
+.add-comment {
+  display: none;
+  z-index: 1032;
+  height: 100vh;
+}
+
+.add-comment-background {
+  background-color: white;
+  opacity: 0.9;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+}
+
+.add-comment-form {
+  height: 400px;
+  top: calc(50% - 200px);
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+}
+
+
+/* Index styling */
+
+ .post-display {
+  margin-bottom: 50px;
+  border-color: black;
+  border-style: solid;
+  border-width: 6px;
+ }
+
+ .original-image {
+
+ }
+
+ .drawn-image {
+  position: relative;
+  /*top: -300px;*/
+ }
+
+
+
+/* Edit page styling */
 
 #draw {
   position: fixed;
@@ -61,139 +231,5 @@ body {
 }
 
 
-.new-post {
-  display: none;
-  z-index: 1032;
-  height: 100vh;
-}
 
-.new-post-background {
-  background-color: white;
-  opacity: 0.9;
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  right: 0;
-}
-
-.new-post-form {
-  height: 400px;
-  top: calc(50% - 200px);
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  right: 0;
-}
-
-
-.about-page {
-  display: none;
-  z-index: 1031;
-  height: 100vh;
-}
-
-.about-background {
-  background-color: white;
-  opacity: 0.9;
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  right: 0;
-}
-
-.about-content {
-  height: 400px;
-  top: calc(50% - 200px)
- /* position: absolute;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  right: 0;*/
-}
-
-.add-comment {
-  display: none;
-  z-index: 1032;
-  height: 100vh;
-}
-
-.add-comment-background {
-  background-color: white;
-  opacity: 0.9;
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  right: 0;
-}
-
-.add-comment-form {
-  height: 400px;
-  top: calc(50% - 200px);
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  right: 0;
-}
-
-
- #bottom_nav {
-  border-bottom-color: black;
-  border-bottom-style: solid;
-  border-bottom-width: 12px; 
- }
-
- #top_nav {
-  border-top-color: black;
-  border-top-style: solid;
-  border-top-width: 12px; 
- }
-
- #top_right_corner {
-  background-color: white;
-  border-color: black;
-  border-style: solid;
-  border-width: 12px;
-  min-width: 200px;
- }
-
- #top_left_corner {
-  background-color: white;
-  border-color: black;
-  border-style: solid;
-  border-width: 12px;
-  min-width: 200px;
- }
-
- #bottom_right_corner {
-  background-color: white;
-  border-color: black;
-  border-style: solid;
-  border-width: 12px;
-  min-width: 200px;
- }
-
- #bottom_left_corner {
-  background-color: white;
-  border-color: black;
-  border-style: solid;
-  border-width: 12px;
-  min-width: 200px;
- }
-
- a {
-  color: black;
- }
-
- a:hover {
-  color: black;
- }
-
- #post {
-  margin-bottom: 50px;
- }
 

@@ -31,9 +31,37 @@ No posts have been made yet!
 <% @posts.each do |post| %>
 
 
-  <div id='post' class='col-md-8 col-md-offset-2'>
+  <div class='post-display col-md-8 col-md-offset-2'>
 
+    <h1><span class='glyphicon glyphicon-pencil'>
+    </span></h1>
+    <h4>
     <%= link_to post.title, post_path(post) %>
+    </h4>      
+
+    <% if post.image_file_name.present? %>
+
+      <div class='original-image'>
+
+      <%= image_tag post.image.url(:thumb), class: 'instagram_upload' %>
+
+      </div>
+
+    <% end %>
+
+    <% if post.drawing_file_name.present? %>
+
+      <div class='drawn-image'>
+
+      <%= image_tag post.drawing.url(:thumb), class: 'instagram_upload' %>
+
+      </div>
+
+    <% end %>
+    
+
+    <%= link_to "Edit this Post", edit_post_path(post) %>
+
 
     <%= post.content %>
 
@@ -51,19 +79,6 @@ No posts have been made yet!
     <% end %>
 
 
-    <% if post.image_file_name.present? %>
-
-      <%= image_tag post.image.url(:thumb), class: 'instagram_upload' %>
-
-    <%= link_to "Edit this Post", edit_post_path(post) %>
-
-    <% end %>
-
-    <% if post.drawing_file_name.present? %>
-
-      <%= image_tag post.drawing.url(:thumb), class: 'instagram_upload' %>
-
-    <% end %>
 
     <% post.comments.each do |comment| %>
 
@@ -81,4 +96,15 @@ No posts have been made yet!
 </div>
 
 </div>
+
+<script src='https://code.jquery.com/jquery-2.0.3.min.js'></script>
+<script>
+
+$(window).load(function(){
+  $('.post-display .drawn-image').each(function() {
+
+    $(this).css({top: '-' + $(this).height() + 'px' })
+  });
+})
+</script>
 
