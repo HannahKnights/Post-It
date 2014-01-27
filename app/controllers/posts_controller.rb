@@ -17,11 +17,11 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post = Post.find_by(params[:post_id])
+    @post = Post.find(params[:id])
   end
 
   def update
-    @post = Post.find_by(params[:post_id])
+    @post = Post.find(params[:id])
     @post.update params[:post].permit(:drawing)
     redirect_to ('/')
   end
