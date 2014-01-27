@@ -191,10 +191,11 @@ body {
  }
 
  .post-header {
-
-  display: inline-block;
-
+  width: 500px;
+  margin:auto;
  }
+
+
 
  .image-container {
   position:relative;
@@ -231,7 +232,7 @@ body {
   margin-bottom: 15px;
  }
 
- .comment-content {
+ .post-comments {
   width: 500px;
   margin:auto;
   box-sizing: border-box;
@@ -246,6 +247,11 @@ body {
 
  .comment {
   color: blue;
+ }
+
+ .post-tags {
+  width: 500px;
+  margin:auto;
  }
 
  .post-button {
@@ -283,17 +289,23 @@ body {
 
 /* Edit page styling */
 
+
+.edit-post-header {
+  margin-top: 20px;
+}
+
+.edit-post-tags {
+  margin-bottom: 20px;
+}
+
 #draw {
-  position: fixed;
-  top: 100;
-  left: 100;
+  position:absolute;
+  top: 0px;
+  left: 0px;
   z-index: 2000;
-  width: 286px;
-  height: 300px;
+  width: auto;
+  height: auto;
   background-color: transparent;
-  border-style: solid;
-  border-color: pink;
-  border-width: thick;
 }
 
 #image_to_draw {
