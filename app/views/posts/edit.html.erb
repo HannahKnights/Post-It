@@ -35,7 +35,7 @@
 <% if @post.image_file_name.present? %>
 
   <!-- <div id='image_to_draw'> -->
-  <%= image_tag @post.image.url(:thumb), class: 'instagram_upload' %>
+  <%= image_tag @post.image.url(:large), class: 'instagram_upload' %>
   <!-- </div> -->
 
 <% end %>
@@ -125,15 +125,6 @@ function makeCanvasWithPen(colour, thickness) {
 
 function saveCanvasImage() {
 
-    function appendResult(element, src) {
-
-        var image = new Image();
-
-        image.src = src;
-
-        element.appendChild(image);
-
-    };
 
     function sendImage(drawingSource) {
 
@@ -146,10 +137,6 @@ function saveCanvasImage() {
     var drawing = $('#draw > canvas');
 
     var drawingSource = drawing[0].toDataURL('image/png');
-
-    var element = document.getElementById('result');
-
-    appendResult(element, drawingSource);
 
     sendImage(drawingSource)
 

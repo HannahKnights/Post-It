@@ -8,9 +8,7 @@
 
       <h4 class='text-center'>
 
-      <%= link_to tag, tag_posts_path(tag) %> 
-
-      </h4>
+      <%= link_to tag, tag_posts_path(tag) %>
 
       <% end %>
 
@@ -31,19 +29,21 @@ No posts have been made yet!
 <% @posts.each do |post| %>
 
 
-  <div class='post-display col-md-8 col-md-offset-2'>
+  <div class='post-display col-md-6 col-md-offset-3'>
 
     <h1><span class='glyphicon glyphicon-pencil'>
     </span></h1>
     <h4>
     <%= link_to post.title, post_path(post) %>
-    </h4>      
+    </h4> 
+
+    <div class='image-container'>     
 
     <% if post.image_file_name.present? %>
 
       <div class='original-image'>
 
-      <%= image_tag post.image.url(:thumb), class: 'instagram_upload' %>
+      <%= image_tag post.image.url(:large), class: 'instagram_upload' %>
 
       </div>
 
@@ -53,41 +53,53 @@ No posts have been made yet!
 
       <div class='drawn-image'>
 
-      <%= image_tag post.drawing.url(:thumb), class: 'instagram_upload' %>
+      <%= image_tag post.drawing.url(:large), class: 'instagram_upload' %>
 
       </div>
 
     <% end %>
-    
 
-    <%= link_to "Edit this Post", edit_post_path(post) %>
 
+    </div>
+
+
+    <div class='post-content'>
 
     <%= post.content %>
 
+    </div>
+    
 
+    <% post.comments.each do |comment| %>
+
+    <div class='comment-content'>
+
+      > 
+      <%= comment.content %>
+      
+    </div>
+
+    <% end %>
+
+    
     <% if post.tags.any? %>
-
-    Tags:
     
       <% post.tags.each do |tag| %>
 
-        <%= link_to tag, tag_posts_path(tag) %>
+        <%= link_to tag, tag_posts_path(tag), :class => 'post-tag' %>
 
       <% end %>
 
     <% end %>
 
 
+    <div class='row post-buttons'>
 
-    <% post.comments.each do |comment| %>
+    <%= button_to "Add a Comment", new_post_comment_path(post), :class => 'post-button', :method => :get %>
 
-      <%= comment.content %>
+    <%= button_to "Edit this Post", edit_post_path(post), :class => 'post-button', :method => :get %>
 
-    <% end %>
-
-    <%= link_to "Add a Comment", new_post_comment_path(post) %>
-
+    </div>
 
   </div>
 
@@ -97,14 +109,4 @@ No posts have been made yet!
 
 </div>
 
-<script src='https://code.jquery.com/jquery-2.0.3.min.js'></script>
-<script>
-
-$(window).load(function(){
-  $('.post-display .drawn-image').each(function() {
-
-    $(this).css({top: '-' + $(this).height() + 'px' })
-  });
-})
-</script>
 

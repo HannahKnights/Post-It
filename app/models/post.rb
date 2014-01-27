@@ -2,17 +2,18 @@ class Post < ActiveRecord::Base
   
   after_validation :parse_tags
 
-  has_many :comments
+  has_many :comments, dependent: :destroy
   has_attached_file :image, 
-                    styles: { thumb: "300x300>"},
+                    styles: { large: "500"},
                     storage: :s3,
                     s3_credentials: {
                       access_key_id: 'AKIAJCXXF7UZZDQ4S4GQ',
                       secret_access_key: Rails.application.secrets.sw3_secret_access_key
                     },
                     bucket: 'faux_instagram'
+
   has_attached_file :drawing, 
-                    styles: { thumb: "300x300>"},
+                    styles: { large: "500"},
                     storage: :s3,
                     s3_credentials: {
                       access_key_id: 'AKIAJCXXF7UZZDQ4S4GQ',

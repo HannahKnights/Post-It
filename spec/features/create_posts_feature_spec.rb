@@ -50,6 +50,12 @@ describe Post do
 
   end
 
+  describe 'editing images' do
+
+    
+    
+  end
+
 end
 
 

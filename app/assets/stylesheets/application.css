@@ -139,7 +139,7 @@ body {
   right: 0;
 }
 
-.new-post-form {
+.new-post {
   height: 400px;
   top: calc(50% - 200px);
   position: absolute;
@@ -168,7 +168,7 @@ body {
   right: 0;
 }
 
-.add-comment-form {
+.add-comment {
   height: 400px;
   top: calc(50% - 200px);
   position: absolute;
@@ -186,15 +186,97 @@ body {
   border-color: black;
   border-style: solid;
   border-width: 6px;
+  width: 550px;
+  box-sizing: border-box;
+ }
+
+ .post-header {
+
+  display: inline-block;
+
+ }
+
+ .image-container {
+  position:relative;
+  width: 500px;
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
  }
 
  .original-image {
+  width: 100%;
+  /*position: relative;
+  top: 0px;*/
 
  }
 
  .drawn-image {
-  position: relative;
+  position:absolute;
+  top: 0px;
+  left: 0px;
   /*top: -300px;*/
+ }
+
+ .post-content {
+  width: 500px;
+  margin:auto;
+  box-sizing: border-box;
+  padding: 10px;
+  border-color: black;
+  border-style: solid;
+  border-width: 1px;
+  box-shadow: 0px 5px 5px #999999;
+  margin-top: 10px;
+  margin-bottom: 15px;
+ }
+
+ .comment-content {
+  width: 500px;
+  margin:auto;
+  box-sizing: border-box;
+  padding: 10px;
+  border-color: blue;
+  border-style: solid;
+  border-width: 1px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  color: blue;
+ }
+
+ .comment {
+  color: blue;
+ }
+
+ .post-button {
+  background-color: black;
+  border-color: black;
+  border-style: solid;
+  border-width: 2px;
+  color: white;
+  margin-top: 10px;
+  margin-bottom: 20px;
+ }
+
+ .button_to {
+  display: inline-block;
+ }
+
+ .post-buttons {
+  width: 500px;
+  margin:auto;
+ }
+
+ .post-tag {
+  color: blue;
+  text-decoration: none;
+  font-size: 115%;
+ }
+
+ .post-tag:hover {
+  color: blue;
+  text-decoration: underline;
+  font-size: 115%;
  }
 
 
