@@ -9,16 +9,17 @@ describe 'Tagging' do
 
   before do
     login_as user, scope: :user
+    add_post('First post', '#anothertag')
     add_post('Gary Oldman', '#gary')
-    add_post('Second post', '#anothertag')
   end
 
   context 'clicking on tags' do
 
     it 'should filter the posts by tag' do
+      visit '/'
       expect(page).to have_content '#anothertag'
-      click_link '#gary'
-      expect(page).not_to have_content '#anothertag'
+      within(:css, '#tag-sidebar') { click_link '#gary' }
+      within(:css, '.container') { expect(page).not_to have_content '#anothertag' }
     end
 
   end
