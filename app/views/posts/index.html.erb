@@ -58,6 +58,8 @@
 
           <div class='drawn-image'>
 
+          <div class='drawing_updated_at' data-id='<%= post.id %>'><%= post.drawing_updated_at %></div>
+
           <%= image_tag post.drawing.url(:large), class: 'instagram_upload' %>
 
           </div>
@@ -116,5 +118,35 @@
   </div>
 
 </div>
+
+<script>
+
+  sortPosts = function() {
+
+    return $(".row > .post-display").tsort('.drawing_updated_at', {
+      order: 'desc'
+    });
+
+  };
+
+  $(document).ready (function() {
+
+    return sortPosts();
+
+    });
+
+    // var dispatcher = new WebSocketRails(window.location.host + '/websocket');
+
+    // var channel = dispatcher.subscribe('votes');
+
+    // chanell.bind('update_drawing', function(post){
+
+    //   $('');
+    //   return sortPosts()
+
+  // });
+
+
+</script>
 
 

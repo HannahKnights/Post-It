@@ -195,8 +195,6 @@ body {
   margin:auto;
  }
 
-
-
  .image-container {
   position:relative;
   width: 500px;
@@ -207,16 +205,16 @@ body {
 
  .original-image {
   width: 100%;
-  /*position: relative;
-  top: 0px;*/
-
  }
 
  .drawn-image {
   position:absolute;
   top: 0px;
   left: 0px;
-  /*top: -300px;*/
+ }
+
+ .drawing_updated_at {
+  display: none;
  }
 
  .post-content {

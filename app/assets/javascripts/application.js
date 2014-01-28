@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
+//= require jquery.tinysort
+//= require websocket_rails/main
 //= require_tree .
-//= require_tree ../../../vendor/assets/javascripts/
 

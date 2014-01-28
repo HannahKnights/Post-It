@@ -23,6 +23,9 @@ class PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     @post.update params[:post].permit(:drawing)
+
+    WebsocketRails[:drawing].trigger 'update_drawing', {id: @post.id, drawing: @post.drawing_file_name}
+    
     redirect_to ('/')
   end
 

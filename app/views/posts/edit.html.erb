@@ -68,6 +68,8 @@
 
 
 
+
+
   <div id='pencil-picker'>
       <form id='pick'>
       <input id='colour' value='#FF6666' type='text' placeholder='Pick a colour'>
@@ -76,6 +78,9 @@
       </form>
   </div>
 
+  <div id='eraser-picker'>
+    <input id='eraser'type='checkbox' name='erase' value='true'></div>
+  </div>
 
   <%= form_for @post, html: { id: "add_drawing" } do |form| %>
 
@@ -89,111 +94,140 @@
 
 <script src='https://code.jquery.com/jquery-2.0.3.min.js'></script>
 <script>
-window.penColor = $('#colour').val();
-$('#colour').on('change', function() {
-  window.penColor = $(this).val();
-});
+  window.penColor = $('#colour').val();
+  $('#colour').on('change', function() {
+    window.penColor = $(this).val();
+  });
 
-window.penThickness = $('#thickness').val();
-$('#thickness').on('change', function() {
-  window.penThickness = $(this).val();
-});
+  window.penThickness = $('#thickness').val();
+  $('#thickness').on('change', function() {
+    window.penThickness = $(this).val();
+  });
 
-function makeCanvasWithPen(colour, thickness) {
-    // Creates a new canvas element and appends it as a child
-    // to the parent element, and returns the reference to
-    // the newly created canvas element
+  window.eraserAction = $('#eraser').is (':checked');
+  $('#eraser').on('change', function() {
+    window.eraserAction = $(this).is (':checked');
+  });
 
-    function createCanvas(parent, width, height) {
-        var canvas = {};
-        canvas.node = document.createElement('canvas');
-        canvas.context = canvas.node.getContext('2d');
-        canvas.node.width = width || 100;
-        canvas.node.height = height || 100;
-        parent.appendChild(canvas.node);
-        return canvas;
-    };
 
-    function init(container, width, height, fillColor) {
-        var canvas = createCanvas(container, width, height);
-        var ctx = canvas.context;
-        // define a custom fillCircle method
-        ctx.fillCircle = function(x, y, radius, fillColor) {
-            this.fillStyle = fillColor;
-            this.beginPath();
-            this.moveTo(x, y);
-            this.arc(x, y, radius, 0, Math.PI * 2, false);
-            this.fill();
-            // console.log(fillColor)
-        };
+
+  function makeCanvasWithPen(colour, thickness) {
+      // Creates a new canvas element and appends it as a child
+      // to the parent element, and returns the reference to
+      // the newly created canvas element
+
+      function createCanvas(parent, width, height) {
+          var canvas = {};
+          canvas.node = document.createElement('canvas');
+          canvas.context = canvas.node.getContext('2d');
+          canvas.node.width = width || 100;
+          canvas.node.height = height || 100;
+          parent.appendChild(canvas.node);
+          return canvas;
+      };
+
+      function init(container, width, height, fillColor) {
+          var canvas = createCanvas(container, width, height);
+          var ctx = canvas.context;
+
+          // define a custom fillCircle method
+          ctx.fillCircle = function(x, y, radius, fillColor, erase) {
+              if (erase == true) 
+                {
+                this.globalCompositeOperation="destination-out";
+                }
+              else
+                {
+                this.globalCompositeOperation="source-over"
+                }
+              this.fillStyle = fillColor;
+              this.beginPath();
+              this.moveTo(x, y);
+              this.arc(x, y, radius, 0, Math.PI * 2, false);
+              this.fill();
+          };
+          
+
+          // bind mouse events
+          canvas.node.onmousemove = function(e) {
+              if (!canvas.isDrawing) {
+                 return;
+              }
+              var x = e.pageX - $(this).offset().left;
+              var y = e.pageY - $(this).offset().top;
+              var radius = window.penThickness;
+              var fillColor = window.penColor;
+              var erase = window.eraserAction
+              ctx.fillCircle(x, y, radius, fillColor, erase);
+          };
+          canvas.node.onmousedown = function(e) {
+              canvas.isDrawing = true;
+          };
+          canvas.node.onmouseup = function(e) {
+              canvas.isDrawing = false;
+          };
+      };
+
+      var container = document.getElementById('draw');
+
+      var height = $('#original-image').height()
+
+      var width = $('#original-image').width()  
+      
+      init(container, width, height);
+
+  };
+
+  function saveCanvasImage() {
+
+
+      function sendImage(drawingSource) {
+
+          document.getElementById('add_drawing').post_drawing.value = drawingSource;
+
+          console.log(document.getElementById('add_drawing').post_drawing.value);
+
+      };
+
+      var drawing = $('#draw > canvas');
+
+      var drawingSource = drawing[0].toDataURL('image/png');
+
+      sendImage(drawingSource)
+
+  };
+
+
+  $(document).ready(function(){
+
+
+      $('#pick').on ('submit', function(event) {
+
+          event.preventDefault();
+          makeCanvasWithPen($('#colour').val(), $('#thickness').val());
+
+      });
+
+      $('#add_drawing').on ('submit', function() {
+
+          saveCanvasImage()
+
+      });
+
+      $('#eraser').click (function () {
         
+        var eraserOn = $(this);
+          
+          if (eraserOn.is (':checked')) {
+            console.log('Success!')
+            console.log($(this).val())
+            console.log(window.eraserAction)
+          }
 
-        // bind mouse events
-        canvas.node.onmousemove = function(e) {
-            if (!canvas.isDrawing) {
-               return;
-            }
-            var x = e.pageX - $(this).offset().left;
-            var y = e.pageY - $(this).offset().top;
-            var radius = window.penThickness; // or whatever
-            var fillColor = window.penColor;
-            ctx.fillCircle(x, y, radius, fillColor);
-        };
-        canvas.node.onmousedown = function(e) {
-            canvas.isDrawing = true;
-        };
-        canvas.node.onmouseup = function(e) {
-            canvas.isDrawing = false;
-        };
-    };
-
-    var container = document.getElementById('draw');
-
-    var height = $('#original-image').height()
-
-    var width = $('#original-image').width()  
-    
-    init(container, width, height);
-
-};
-
-function saveCanvasImage() {
+      });
 
 
-    function sendImage(drawingSource) {
-
-        document.getElementById('add_drawing').post_drawing.value = drawingSource;
-
-        console.log(document.getElementById('add_drawing').post_drawing.value);
-
-    };
-
-    var drawing = $('#draw > canvas');
-
-    var drawingSource = drawing[0].toDataURL('image/png');
-
-    sendImage(drawingSource)
-
-};
-
-
-$(document).ready(function(){
-
-
-    $('#pick').on ('submit', function(event) {
-
-        event.preventDefault();
-        makeCanvasWithPen($('#colour').val(), $('#thickness').val());
-
-    });
-
-    $('#add_drawing').on ('submit', function() {
-
-        saveCanvasImage()
-
-    });
-
-});
+  });
 
 
 </script>

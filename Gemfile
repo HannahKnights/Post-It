@@ -43,6 +43,10 @@ gem 'paperclip'
 
 gem 'aws-sdk'
 
+gem 'websocket-rails'
+
+gem 'thin'
+
 gem 'heroku_secrets', :git => 'https://github.com/alexpeattie/heroku_secrets'
 
 gem 'stripe', :github => 'stripe/stripe-ruby'
