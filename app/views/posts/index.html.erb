@@ -60,7 +60,7 @@
 
           <div class='drawing_updated_at' data-id='<%= post.id %>'><%= post.drawing_updated_at %></div>
 
-          <%= image_tag post.drawing.url(:large), class: 'instagram_upload' %>
+          <%= image_tag post.drawing.url(:large), class: 'instagram_upload', data: {id: post.id } %>
 
           </div>
 
@@ -135,16 +135,20 @@
 
     });
 
-    // var dispatcher = new WebSocketRails(window.location.host + '/websocket');
+    var dispatcher = new WebSocketRails(window.location.host + '/websocket');
 
-    // var channel = dispatcher.subscribe('votes');
+    var channel = dispatcher.subscribe('drawing');
 
-    // chanell.bind('update_drawing', function(post){
+    channel.bind('update_drawing', function(post){
 
-    //   $('');
-    //   return sortPosts()
+      console.log(post.image_url)
+ 
+      $('.drawing_updated_at[data-id="' + post.id + '"]').text(post.drawing); 
+      $('.instagram_upload[data-id="' + post.id + '"]').attr('src', post.image_url);
 
-  // });
+      return sortPosts();
+
+  });
 
 
 </script>
