@@ -74,7 +74,6 @@
       <form id='pick'>
       <input id='colour' value='#FF6666' type='text' placeholder='Pick a colour'>
       <input id='thickness' type='range' name='thickness' min='1' max='50' value='20'>
-      <button type='submit'>Draw!</button>
       </form>
   </div>
 
@@ -117,10 +116,8 @@
 
 
 
-  function makeCanvasWithPen(colour, thickness) {
-      // Creates a new canvas element and appends it as a child
-      // to the parent element, and returns the reference to
-      // the newly created canvas element
+  function makeCanvasWithPen() {
+
 
       function createCanvas(parent, width, height) {
           var canvas = {};
@@ -128,17 +125,23 @@
           canvas.context = canvas.node.getContext('2d');
           canvas.node.width = width || 100;
           canvas.node.height = height || 100;
+          canvas.node.id = 'canvas-drawing';
           parent.appendChild(canvas.node);
 
           if($('#drawing img').length){
-            var image = $('#drawing img')[0]
-            canvas.context.drawImage(image, 0, 0)
+
+            var image = new Image;
+            image.crossOrigin = '';
+            image.src = $('#drawing img').attr('src');
+            image.onload = function() {
+              canvas.context.drawImage(image, 0, 0);
+            }
           }
 
           return canvas;
       };
 
-      function init(container, width, height, fillColor) {
+      function init(container, width, height) {
           var canvas = createCanvas(container, width, height);
           var ctx = canvas.context;
 
@@ -162,7 +165,7 @@
 
           // bind mouse events
           canvas.node.onmousemove = function(e) {
-              console.log('hi')
+              // console.log('hi')
               if (!canvas.isDrawing) {
                  return;
               }
@@ -172,7 +175,7 @@
               var fillColor = window.penColor;
               var erase = window.eraserAction
               ctx.fillCircle(x, y, radius, fillColor, erase);
-              console.log($('#draw > canvas')[0].toDataURL('image/png'));
+              // console.log((document.getElementById('canvas-drawing')).toDataURL('image/png'));
           };
           canvas.node.onmousedown = function(e) {
               canvas.isDrawing = true;
@@ -199,13 +202,11 @@
 
           document.getElementById('add_drawing').post_drawing.value = drawingSource;
 
-          console.log(document.getElementById('add_drawing').post_drawing.value);
-
       };
 
-      var drawing = $('#draw > canvas');
+      var drawing = document.getElementById('canvas-drawing');
 
-      var drawingSource = drawing[0].toDataURL('image/png');
+      var drawingSource = drawing.toDataURL('image/png');
 
       sendImage(drawingSource)
 
@@ -215,12 +216,12 @@
   $(document).ready(function(){
 
 
-      $('#pick').on ('submit', function(event) {
+      $(window).load (function() {
 
-          event.preventDefault();
-          makeCanvasWithPen($('#colour').val(), $('#thickness').val());
+          makeCanvasWithPen();
 
       });
+
 
       $('#add_drawing').on ('submit', function() {
 

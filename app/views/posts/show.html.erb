@@ -10,7 +10,7 @@ Tags:
 <% end %>
 
 <% if @post.image_file_name.present? %>
-  <%= image_tag @post.image.url(:thumb), class: 'instagram_upload' %>
+  <%= image_tag @post.image.url(:large), class: 'instagram_upload' %>
 <% end %>
 
 <% @post.comments.each do |comment| %>
