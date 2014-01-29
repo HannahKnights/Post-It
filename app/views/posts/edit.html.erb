@@ -90,6 +90,12 @@
 
   <% end %>
 
+  <% if @post.drawing_file_name.present? %>
+    <div id='drawing' style='display: none;'>
+      <%= image_tag @post.drawing.url(:large), class: 'instagram_upload' %>
+    </div>
+  <% end %>
+
 
 
 <script src='https://code.jquery.com/jquery-2.0.3.min.js'></script>
@@ -123,6 +129,12 @@
           canvas.node.width = width || 100;
           canvas.node.height = height || 100;
           parent.appendChild(canvas.node);
+
+          if($('#drawing img').length){
+            var image = $('#drawing img')[0]
+            canvas.context.drawImage(image, 0, 0)
+          }
+
           return canvas;
       };
 
@@ -150,6 +162,7 @@
 
           // bind mouse events
           canvas.node.onmousemove = function(e) {
+              console.log('hi')
               if (!canvas.isDrawing) {
                  return;
               }
@@ -159,6 +172,7 @@
               var fillColor = window.penColor;
               var erase = window.eraserAction
               ctx.fillCircle(x, y, radius, fillColor, erase);
+              console.log($('#draw > canvas')[0].toDataURL('image/png'));
           };
           canvas.node.onmousedown = function(e) {
               canvas.isDrawing = true;
