@@ -172,10 +172,11 @@
       console.log('hello');
       console.log(msg);
 
-      var liveDrawing = document.getElementById('test');
+      var liveDrawing = $('.instagram_upload[data-id="' + msg.postId + '"]')[0]
 
-      console.log(msg.data)
-      console.log(liveDrawing.src)
+      // console.log(msg.data)
+      // console.log(liveDrawing.src)
+      // console.log(msg.postId)
 
       liveDrawing.src = msg.data;
 
