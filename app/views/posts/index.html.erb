@@ -60,7 +60,7 @@
 
           <div class='drawing_updated_at' data-id='<%= post.id %>'><%= post.drawing_updated_at %></div>
 
-          <%= image_tag post.drawing.url(:large), class: 'instagram_upload', data: {id: post.id } %>
+          <%= image_tag post.drawing.url(:large), class: 'instagram_upload', id: 'test', data: {id: post.id } %>
 
           </div>
 
@@ -115,7 +115,12 @@
 
   <% end %>
   
+  <div>
+  I'ma a div with an image!
+  <img>
   </div>
+  </div>
+
 
 </div>
 
@@ -164,7 +169,16 @@
     });
 
     channel.bind('updated', function(msg) {
+      console.log('hello');
       console.log(msg);
+
+      var liveDrawing = document.getElementById('test');
+
+      console.log(msg.data)
+      console.log(liveDrawing.src)
+
+      liveDrawing.src = msg.data;
+
     })
 
 </script>

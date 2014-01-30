@@ -154,6 +154,9 @@
           function sendData() {
 
             var drawingData = $('canvas')[0].toDataURL('image/png');
+
+             // var drawingData = $('canvas')[0].toBlob();
+
             channel.trigger('updated', {data: drawingData})
 
             // console.log('This is coming from sendData ---->');
