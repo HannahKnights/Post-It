@@ -141,15 +141,31 @@
 
     channel.bind('update_drawing', function(post){
 
+      console.log('This is the post image url -->')
       console.log(post.image_url)
+      console.log('This is the post -->')
+      console.log(post)
+
  
       $('.drawing_updated_at[data-id="' + post.id + '"]').text(post.drawing); 
       $('.instagram_upload[data-id="' + post.id + '"]').attr('src', post.image_url);
 
       return sortPosts();
 
-  });
 
+    });
+
+    var anotherChannel = dispatcher.subscribe('live_drawing');
+
+    anotherChannel.bind('realtime_draw', function(post) {
+
+      console.log(post)
+
+    });
+
+    channel.bind('updated', function(msg) {
+      console.log(msg);
+    })
 
 </script>
 

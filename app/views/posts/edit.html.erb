@@ -96,6 +96,11 @@
   <% end %>
 
 
+  <%#  WebsocketRails[:live_drawing].trigger 'realtime_draw', {id: @post.id, drawing: @post.drawing_updated_at, image_url: @post.drawing.url} %>
+
+  <input id='canvas-drawing-data' value='#FF6666' type='hidden'>
+
+
 
 <script src='https://code.jquery.com/jquery-2.0.3.min.js'></script>
 <script>
@@ -114,7 +119,8 @@
     window.eraserAction = $(this).is (':checked');
   });
 
-
+  var dispatcher = new WebSocketRails(window.location.host + '/websocket');
+  var channel = dispatcher.subscribe('drawing')
 
   function makeCanvasWithPen() {
 
@@ -141,9 +147,22 @@
           return canvas;
       };
 
-      function init(container, width, height) {
-          var canvas = createCanvas(container, width, height);
+      function init(container, canvas, width, height) {
+
           var ctx = canvas.context;
+
+          function sendData() {
+
+            var drawingData = $('canvas')[0].toDataURL('image/png');
+            channel.trigger('updated', {data: drawingData})
+
+            // console.log('This is coming from sendData ---->');
+            // console.log(drawingData.value);
+            // console.log('<----This is coming from sendData');
+          
+          // console.log((document.getElementById('canvas-drawing')).toDataURL('image/png'));
+
+          };
 
           // define a custom fillCircle method
           ctx.fillCircle = function(x, y, radius, fillColor, erase) {
@@ -175,7 +194,9 @@
               var fillColor = window.penColor;
               var erase = window.eraserAction
               ctx.fillCircle(x, y, radius, fillColor, erase);
-              // console.log((document.getElementById('canvas-drawing')).toDataURL('image/png'));
+
+              sendData()  
+          
           };
           canvas.node.onmousedown = function(e) {
               canvas.isDrawing = true;
@@ -189,9 +210,13 @@
 
       var height = $('#original-image').height()
 
-      var width = $('#original-image').width()  
+      var width = $('#original-image').width()
+
+      var canvas = createCanvas(container, width, height);
+
+
       
-      init(container, width, height);
+      init(container, canvas, width, height);
 
   };
 
@@ -215,6 +240,13 @@
 
   $(document).ready(function(){
 
+      
+      var drawingDataInput = $('#canvas-drawing-data');
+
+      console.log(drawingDataInput);
+      console.log(drawingDataInput.val());
+
+
 
       $(window).load (function() {
 
@@ -229,6 +261,7 @@
 
       });
 
+
       $('#eraser').click (function () {
         
         var eraserOn = $(this);
@@ -241,8 +274,21 @@
 
       });
 
+    // (drawingDataInput).val().change (function() {
+      
+    //   console.log('This is from window.penColour---->');
+    //   console.log($('#canvas-drawing-data').val());
+    //   console.log('<-----This is from window.penColour');
+    //   // console.log($(this).val())
+      
+    //   });
+
 
   });
+
+
+      // WebsocketRails[:live_drawing].trigger 'realtime_draw', {id: @post.id, drawing: @post.drawing_updated_at, image_url: @post.drawing.url}
+
 
 
 </script>
