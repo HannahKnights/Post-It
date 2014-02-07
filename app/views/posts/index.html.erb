@@ -115,10 +115,6 @@
 
   <% end %>
   
-  <div>
-  I'ma a div with an image!
-  <img>
-  </div>
   </div>
 
 
@@ -160,13 +156,6 @@
 
     });
 
-    var anotherChannel = dispatcher.subscribe('live_drawing');
-
-    anotherChannel.bind('realtime_draw', function(post) {
-
-      console.log(post)
-
-    });
 
     channel.bind('updated', function(msg) {
       console.log('hello');

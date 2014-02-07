@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require jquery.tinysort
+//= require underscore
 //= require websocket_rails/main
 //= require_tree .
 

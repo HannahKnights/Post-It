@@ -96,8 +96,6 @@
   <% end %>
 
 
-  <%#  WebsocketRails[:live_drawing].trigger 'realtime_draw', {id: @post.id, drawing: @post.drawing_updated_at, image_url: @post.drawing.url} %>
-
   <input id='canvas-drawing-data' value='#FF6666' type='hidden'>
 
   <div id='post-id'><%= @post.id %></div>
@@ -201,7 +199,7 @@
               var fillColor = window.penColor;
               var erase = window.eraserAction
               ctx.fillCircle(x, y, radius, fillColor, erase);
-
+              
               sendData()  
           
           };
@@ -281,21 +279,7 @@
 
       });
 
-    // (drawingDataInput).val().change (function() {
-      
-    //   console.log('This is from window.penColour---->');
-    //   console.log($('#canvas-drawing-data').val());
-    //   console.log('<-----This is from window.penColour');
-    //   // console.log($(this).val())
-      
-    //   });
-
-
   });
-
-
-      // WebsocketRails[:live_drawing].trigger 'realtime_draw', {id: @post.id, drawing: @post.drawing_updated_at, image_url: @post.drawing.url}
-
 
 
 </script>
