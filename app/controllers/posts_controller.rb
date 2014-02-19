@@ -1,7 +1,5 @@
 class PostsController < ApplicationController
 
-  before_action :authenticate_user!
-
   def new
     @new_post = Post.new
   end
