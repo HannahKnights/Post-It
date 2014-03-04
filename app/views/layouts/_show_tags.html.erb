@@ -1,0 +1,17 @@
+<div id ='tag-sidebar'>
+
+  <% if @all_tags.any? %>
+
+    <% @all_tags.each do |tag| %>
+
+      <h4 class='text-center'>
+
+      <%= link_to tag, tag_posts_path(tag) %>
+
+      </h4>
+
+    <% end %>
+
+  <% end %>
+
+</div>
