@@ -7,7 +7,10 @@ Beginning life as a simple image sharing and posting site, 'Post-it' became a go
 
 There were many challenges in using technologies such as HTML5 Canvas and WebSockets in the way that I did. The amount of data I set-up the WebSockets to transmit causes sluggish rendering times after I deployed to Heroku, something I want to optimise through re-designing. Moving between initialising HTML 5 Canvas objects from Amazon S3 image sources- then re-saving and re-initializing- presented an interesting challenge to avoid a 'tainted' canvas object. Overcoming the challenges was part of the enjoyment of the project, providing a fun way to play around with the technologies I was learning at the time; JavaScript, jQuery and WebSockets.
 
-The site specialises in image posted of Gary Oldman, but there is no validation on that so feel free to upload any image! View the app on heroku [here](http://gentle-earth-3491.herokuapp.com).
+The site specialises in image posted of Gary Oldman, but there is no validation on that so feel free to upload any image! The app is in beta mode while I improve the features, deployment in the near future. Until then... 
+
+![alt text](https://raw.github.com/HannahKnights/Post-It/master/app/assets/images/Screen%20Shot%202014-03-04%20at%2011.55.57.png "Post-it")
+
 
 Thoughts on 'live drawing' improvements (to be trialled):
  * Sending WebSocket message through only every X seconds
